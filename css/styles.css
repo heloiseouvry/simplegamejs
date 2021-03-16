@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #d2fcd2;
+}
+
+#game-container {
+    display: grid;
+}
+
+.case-grid {
+    background-color: #fafafa;
+    border: 1px solid darkgreen;
+}
+
+
+#tutorial {
+    border: 1px solid black;
+}

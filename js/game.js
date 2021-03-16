@@ -1,33 +1,14 @@
 let game = {
-    gameContainer: document.getElementById("game-container"),
-    canvas: document.getElementById("tutorial"),
-    canvasWidth: document.getElementById("tutorial").width,
-    canvasHeight: document.getElementById("tutorial").height,
-    triangleWidth: document.getElementById("tutorial").width / 10,
-    triangleHeight: document.getElementById("tutorial").height / 10,
+    canvas: document.getElementById("game-canvas"),
+    canvasWidth: document.getElementById("game-canvas").width,
+    canvasHeight: document.getElementById("game-canvas").height,
+    triangleWidth: document.getElementById("game-canvas").width / 10,
+    triangleHeight: document.getElementById("game-canvas").height / 10,
     currentPosX: 0,
     currentPosY: 0,
     init: function () {
-        game.initGrid();
-        game.initAvatar();
         game.initEventListener();
         game.displayTriangle();
-    },
-    initGrid: function (sizeGrid = 10, sizeCase = 30) {
-        for (var i = 0; i < sizeGrid; i++) {
-            for (var j = 0; j < sizeGrid; j++) {
-                let caseGrid = document.createElement("div");
-                caseGrid.className = "case-grid";
-                caseGrid.id = `case-grid-${i}-${j}`;
-                caseGrid.style.width = caseGrid.style.height = sizeCase + "px";
-                game.gameContainer.appendChild(caseGrid);
-            }
-        }
-        game.gameContainer.style.gridTemplate = `repeat(${sizeGrid}, 1fr) / repeat(${sizeGrid}, 1fr)`;
-        // game.gameContainer.style.height = `repeat(${sizeGrid}, 1fr) / repeat(${sizeGrid}, 1fr)`;
-    },
-    initAvatar: function () {
-        // let firstCase = document.getElementById(`case-grid-0-0`);
     },
     initEventListener: function () {
         document.addEventListener("keydown", game.handleKeyDown);

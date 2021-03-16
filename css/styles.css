@@ -11,16 +11,6 @@ body {
     background-color: #d2fcd2;
 }
 
-#game-container {
-    display: grid;
-}
-
-.case-grid {
-    background-color: #fafafa;
-    border: 1px solid darkgreen;
-}
-
-
-#tutorial {
+#game-canvas {
     border: 1px solid black;
 }

@@ -8,14 +8,26 @@ let game = {
     currentPosY: 0,
     init: function () {
         game.initEventListener();
+        game.displayGrid();
         game.displayTriangle();
     },
     initEventListener: function () {
         document.addEventListener("keydown", game.handleKeyDown);
     },
+    displayGrid: function () {
+        var ctx = game.canvas.getContext("2d");
+        for (var i = 1; i < 10; i++) {
+            ctx.moveTo(i * game.triangleWidth, 0);
+            ctx.lineTo(i * game.triangleWidth, game.canvasHeight);
+            ctx.moveTo(0, i * game.triangleHeight);
+            ctx.lineTo(game.canvasWidth, i * game.triangleHeight);
+        }
+        ctx.stroke();
+    },
     cleanCanvas: function () {
         var ctx = game.canvas.getContext("2d");
         ctx.clearRect(0, 0, game.canvasWidth, game.canvasHeight);
+        game.displayGrid();
     },
     displayTriangle: function (x = 0, y = 0, dir = "right") {
         var ctx = game.canvas.getContext("2d");
@@ -25,23 +37,23 @@ let game = {
         switch (dir) {
             case "right":
                 triangle.moveTo(x + 5, y + 5);
-                triangle.lineTo(x + 5, y + (game.triangleWidth-5));
-                triangle.lineTo(x + (game.triangleWidth-5), y + (game.triangleWidth/2));
+                triangle.lineTo(x + 5, y + (game.triangleWidth - 5));
+                triangle.lineTo(x + (game.triangleWidth - 5), y + (game.triangleWidth / 2));
                 break;
             case "left":
-                triangle.moveTo(x + (game.triangleWidth-5), y + 5);
-                triangle.lineTo(x + (game.triangleWidth-5), y + (game.triangleWidth-5));
-                triangle.lineTo(x + 5, y + (game.triangleWidth/2));
+                triangle.moveTo(x + (game.triangleWidth - 5), y + 5);
+                triangle.lineTo(x + (game.triangleWidth - 5), y + (game.triangleWidth - 5));
+                triangle.lineTo(x + 5, y + (game.triangleWidth / 2));
                 break;
             case "up":
-                triangle.moveTo(x + 5, y + (game.triangleHeight-5));
-                triangle.lineTo(x + (game.triangleHeight-5), y + (game.triangleHeight-5));
-                triangle.lineTo(x + (game.triangleHeight/2), y + 5);
+                triangle.moveTo(x + 5, y + (game.triangleHeight - 5));
+                triangle.lineTo(x + (game.triangleHeight - 5), y + (game.triangleHeight - 5));
+                triangle.lineTo(x + (game.triangleHeight / 2), y + 5);
                 break;
             case "down":
                 triangle.moveTo(x + 5, y + 5);
-                triangle.lineTo(x + (game.triangleHeight-5), y + 5);
-                triangle.lineTo(x + (game.triangleHeight/2), y + (game.triangleHeight-5));
+                triangle.lineTo(x + (game.triangleHeight - 5), y + 5);
+                triangle.lineTo(x + (game.triangleHeight / 2), y + (game.triangleHeight - 5));
                 break;
         }
         ctx.fill(triangle);
@@ -66,14 +78,14 @@ let game = {
                 break;
             case "ArrowUp":
                 if (game.currentPosY > 0) {
-                game.currentPosY -= game.triangleHeight;
+                    game.currentPosY -= game.triangleHeight;
                 }
                 game.moveTriangle("up");
                 break;
             case "ArrowDown":
                 if (game.currentPosY < (game.canvasHeight - game.triangleHeight)) {
                     game.currentPosY += game.triangleHeight;
-                    }
+                }
                 game.moveTriangle("down");
                 break;
         }

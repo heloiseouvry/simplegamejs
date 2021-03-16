@@ -30,30 +30,37 @@ let game = {
         game.displayGrid();
     },
     displayTriangle: function (x = 0, y = 0, dir = "right") {
+        if(game.triangleWidth <= game.triangleHeight){
+            var sizeTriangle = game.triangleWidth;
+        }
+        else{
+            var sizeTriangle = game.triangleHeight;
+        }
+        var padding = sizeTriangle / 6;
         var ctx = game.canvas.getContext("2d");
         var triangle = new Path2D();
         ctx.fillStyle = 'rgb(200,0,0)';
         ctx.beginPath();
         switch (dir) {
             case "right":
-                triangle.moveTo(x + 5, y + 5);
-                triangle.lineTo(x + 5, y + (game.triangleWidth - 5));
-                triangle.lineTo(x + (game.triangleWidth - 5), y + (game.triangleWidth / 2));
+                triangle.moveTo(x + padding, y + padding);
+                triangle.lineTo(x + padding, y + (sizeTriangle - padding));
+                triangle.lineTo(x + (sizeTriangle - padding), y + (sizeTriangle / 2));
                 break;
             case "left":
-                triangle.moveTo(x + (game.triangleWidth - 5), y + 5);
-                triangle.lineTo(x + (game.triangleWidth - 5), y + (game.triangleWidth - 5));
-                triangle.lineTo(x + 5, y + (game.triangleWidth / 2));
+                triangle.moveTo(x + (sizeTriangle - padding), y + padding);
+                triangle.lineTo(x + (sizeTriangle - padding), y + (sizeTriangle - padding));
+                triangle.lineTo(x + padding, y + (sizeTriangle / 2));
                 break;
             case "up":
-                triangle.moveTo(x + 5, y + (game.triangleHeight - 5));
-                triangle.lineTo(x + (game.triangleHeight - 5), y + (game.triangleHeight - 5));
-                triangle.lineTo(x + (game.triangleHeight / 2), y + 5);
+                triangle.moveTo(x + padding, y + (sizeTriangle - padding));
+                triangle.lineTo(x + (sizeTriangle - padding), y + (sizeTriangle - padding));
+                triangle.lineTo(x + (sizeTriangle / 2), y + padding);
                 break;
             case "down":
-                triangle.moveTo(x + 5, y + 5);
-                triangle.lineTo(x + (game.triangleHeight - 5), y + 5);
-                triangle.lineTo(x + (game.triangleHeight / 2), y + (game.triangleHeight - 5));
+                triangle.moveTo(x + padding, y + padding);
+                triangle.lineTo(x + (sizeTriangle - padding), y + padding);
+                triangle.lineTo(x + (sizeTriangle / 2), y + (sizeTriangle - padding));
                 break;
         }
         ctx.fill(triangle);
